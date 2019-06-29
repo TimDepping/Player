@@ -2,7 +2,7 @@ package de.timdepping.player.valueObjects;
 
 import java.util.Objects;
 
-public class MediaFile {
+public class MediaFile implements Comparable<MediaFile> {
 
 	private static int counter = 0;
 	private static int id = 0;
@@ -19,6 +19,11 @@ public class MediaFile {
 		setSize(size);
 		setFormat(format);
 
+	}
+
+	@Override
+	public int compareTo(MediaFile o) {
+		return getName().toLowerCase().compareTo(o.getName().toLowerCase());
 	}
 
 	@Override

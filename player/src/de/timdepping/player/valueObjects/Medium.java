@@ -1,6 +1,7 @@
 package de.timdepping.player.valueObjects;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 import de.timdepping.player.valueObjects.exceptions.OutOfMemoryException;
@@ -60,6 +61,11 @@ public class Medium {
 		return lastFile;
 	}
 
+	public void sortFilesByName() {
+		Collections.sort(files);
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder(
 				String.format("Medium: %s\n\tCapacity: \t%s\n\tUsed: \t\t%s", name, capacity, getUsedCapacity()));
