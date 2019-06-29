@@ -36,9 +36,15 @@ public class FileImporter {
 
 			if (!line.isEmpty()) {
 				words = line.split(":");
-				if (words.length < 2) {
+				if (words.length != 2) {
 					throw new NotSupportedFileFormatException(
-							"\"" + fileName + "\" has a not supported file format. A line is has no value.");
+							"\"" + fileName + "\" has a not supported file format. A line has a wrong format.");
+				}
+				for (String word : words) {
+					if (word.isBlank()) {
+						throw new NotSupportedFileFormatException(
+								"\"" + fileName + "\" has a not supported file format. A line has no value.");
+					}
 				}
 				key = words[0].split("\\.");
 				String value = words[1];

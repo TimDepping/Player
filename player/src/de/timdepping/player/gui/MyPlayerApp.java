@@ -48,6 +48,7 @@ public class MyPlayerApp {
 		} catch (NotSupportedFileFormatException e) {
 			System.out.println(e);
 		}
+		ipodNano.sortFilesByName();
 
 		JFrame frame = new JFrame(ipodNano.getName());
 		frame.setSize(500, 500);

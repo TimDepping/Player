@@ -32,41 +32,41 @@ public class Serializer {
 	public void serializeFile(MediaFile file) {
 		try {
 			os.writeObject(file);
-		} catch (IOException ex) {
-			System.err.println(" io error: " + ex.getMessage());
-			ex.printStackTrace();
+		} catch (IOException e) {
+			System.err.println(" io error: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
 	public MediaFile deserializeFile() {
-		MediaFile directory = null;
+		MediaFile file = null;
 		try {
-			directory = (MediaFile) is.readObject();
+			file = (MediaFile) is.readObject();
 		} catch (IOException ex) {
 			System.err.println("Reading error: " + ex.getMessage());
 			ex.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Converting error: " + e.getMessage());
+			System.err.println("Converting error: " + e.getMessage());
 			e.printStackTrace();
 		}
-		return directory;
+		return file;
 	}
 
 	public void closeInput() {
 		try {
 			is.close();
-		} catch (IOException ex) {
-			System.err.println("Error closing input file: " + ex.getMessage());
-			ex.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("Error closing input file: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
 	public void closeOutput() {
 		try {
 			os.close();
-		} catch (IOException ex) {
-			System.err.println("Error closing output file: " + ex.getMessage());
-			ex.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("Error closing output file: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }
