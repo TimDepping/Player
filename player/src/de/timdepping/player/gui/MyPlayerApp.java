@@ -40,13 +40,13 @@ public class MyPlayerApp {
 				try {
 					ipodNano.addFile(currentFile);
 				} catch (OutOfMemoryException e) {
-					System.out.println(e);
+					System.err.println(e);
 				}
 			}
 		} catch (IOException e) {
-			System.out.println(e);
+			System.err.println(e);
 		} catch (NotSupportedFileFormatException e) {
-			System.out.println(e);
+			System.err.println(e);
 		}
 		ipodNano.sortFilesByName();
 
@@ -56,6 +56,7 @@ public class MyPlayerApp {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
+			System.err.println(e);
 			e.printStackTrace();
 		}
 
@@ -77,14 +78,14 @@ public class MyPlayerApp {
 						ipodNano.play(ipodNano.getCurrentFile());
 						playButton.setText("||");
 					} catch (NotSupportedFileFormatException e) {
-						System.out.println(e);
+						System.err.println(e);
 					}
 				} else {
 					try {
 						ipodNano.play(ipodNano.getFiles().get(0));
 						playButton.setText("||");
 					} catch (NotSupportedFileFormatException e) {
-						System.out.println(e);
+						System.err.println(e);
 					}
 				}
 				songsText.setText(ipodNano.getCurrentFile().getFileName());
@@ -93,7 +94,7 @@ public class MyPlayerApp {
 					ipodNano.pause();
 					playButton.setText(">");
 				} catch (NotSupportedFileFormatException e) {
-					System.out.println(e);
+					System.err.println(e);
 				}
 			}
 		});
@@ -105,7 +106,7 @@ public class MyPlayerApp {
 				try {
 					ipodNano.previous();
 				} catch (NotSupportedFileFormatException e) {
-					System.out.println(e);
+					System.err.println(e);
 				}
 				songsText.setText(ipodNano.getCurrentFile().getFileName());
 			}
@@ -124,7 +125,7 @@ public class MyPlayerApp {
 					ipodNano.next();
 				} catch (NotSupportedFileFormatException e) {
 					playButton.setText(">");
-					System.out.println(e);
+					System.err.println(e);
 				}
 				songsText.setText(ipodNano.getCurrentFile().getFileName());
 			}
@@ -138,7 +139,7 @@ public class MyPlayerApp {
 				playButton.setText("||");
 				songsText.setText(ipodNano.getCurrentFile().getFileName());
 			} catch (NotSupportedFileFormatException e) {
-				System.out.println(e);
+				System.err.println(e);
 			}
 		});
 		buttonsPanel.add(playFirstButton, BorderLayout.SOUTH);
