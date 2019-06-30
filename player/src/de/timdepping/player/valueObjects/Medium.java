@@ -2,6 +2,7 @@ package de.timdepping.player.valueObjects;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
 import de.timdepping.player.valueObjects.exceptions.OutOfMemoryException;
@@ -57,12 +58,25 @@ public class Medium {
 
 	public MediaFile getLastFile(MediaFile file) {
 		Objects.requireNonNull(file, "getLastFile: file must not be null.");
-		MediaFile lastFile = files.get(files.size());
-		return lastFile;
+		return files.get(files.size());
 	}
 
 	public void sortFilesByName() {
 		Collections.sort(files);
+	}
+
+	public void sortFilesByFileId() {
+		files.sort(new Comparator<MediaFile>() {
+
+			@Override
+			public int compare(MediaFile o1, MediaFile o2) {
+				return Integer.compare(o1.getFileId(), o2.getFileId());
+			}
+		});
+	}
+
+	public void sortFilesByFileSize() {
+		Collections.sort(files, (MediaFile o1, MediaFile o2) -> Double.compare(o1.getSize(), o2.getSize()));
 	}
 
 	@Override

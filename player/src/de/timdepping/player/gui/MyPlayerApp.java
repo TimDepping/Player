@@ -73,20 +73,12 @@ public class MyPlayerApp {
 		JButton playButton = new JButton(">");
 		playButton.addActionListener((ActionEvent event) -> {
 			if (playButton.getText().equals(">")) {
-				if (ipodNano.getCurrentFile() != null) {
-					try {
-						ipodNano.play(ipodNano.getCurrentFile());
-						playButton.setText("||");
-					} catch (NotSupportedFileFormatException e) {
-						System.err.println(e);
-					}
-				} else {
-					try {
-						ipodNano.play(ipodNano.getFiles().get(0));
-						playButton.setText("||");
-					} catch (NotSupportedFileFormatException e) {
-						System.err.println(e);
-					}
+				try {
+					ipodNano.play(
+							ipodNano.getCurrentFile() != null ? ipodNano.getCurrentFile() : ipodNano.getFiles().get(0));
+					playButton.setText("||");
+				} catch (NotSupportedFileFormatException e) {
+					System.err.println(e);
 				}
 				songsText.setText(ipodNano.getCurrentFile().getFileName());
 			} else {
@@ -133,7 +125,7 @@ public class MyPlayerApp {
 		buttonsPanel.add(nextButton, BorderLayout.EAST);
 
 		JButton playFirstButton = new JButton("-");
-		playFirstButton.addActionListener((event) -> {
+		playFirstButton.addActionListener((ActionEvent event) -> {
 			try {
 				ipodNano.play(ipodNano.getFiles().get(0));
 				playButton.setText("||");
