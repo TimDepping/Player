@@ -1,8 +1,11 @@
 package de.timdepping.player.valueObjects;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class MediaFile implements Comparable<MediaFile> {
+public class MediaFile implements Comparable<MediaFile>, Serializable {
+
+	private static final long serialVersionUID = -7167935607507355886L;
 
 	private static int counter = 0;
 	private static int id = 0;
